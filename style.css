@@ -1,0 +1,193 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    background-color: black;
+}
+
+.container {
+
+    height: 92vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+
+}
+
+.title-div {
+    width: 100vw;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #3a3a3c;
+    padding: 5px;
+}
+
+.title-div .title {
+    color: white;
+    font-size: 2rem;
+
+}
+
+.title-div .icons {
+    color: white;
+}
+
+.title-div .icons i {
+    margin: 0px 10px 0px 0px;
+}
+
+
+.container .message p,
+h3 {
+    height: 4vh;
+    background-color: white;
+
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 18px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameBoard {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10vh;
+}
+
+.gameBoard .row {
+    display: flex;
+    gap: 5px;
+}
+
+/* boxes */
+.gameBoard .box {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: bold;
+    vertical-align: middle;
+    box-sizing: border-box;
+    color: #d7dadc;
+    text-transform: uppercase;
+    user-select: none;
+
+    width: 58px;
+    height: 58px;
+    border: 2px solid rgb(58, 58, 60);
+}
+
+/* keyboard */
+.keyBoard {
+    width: 494px;
+    color: white;
+
+}
+
+.keyBoard .keys button {
+    width: 43px;
+    height: 58px;
+
+    text-transform: uppercase;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    border: 0;
+    padding: 0;
+    margin: 0 6px 6px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    background-color: #818384;
+    color: var(--key-text-color);
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+}
+
+.keyBoard .keys #A,
+#S,
+#D,
+#F,
+#G,
+#H,
+#J,
+#K,
+#L,
+#Ş,
+#İ {
+    width: 35px !important;
+}
+
+.keyBoard .keys #Z,
+#C,
+#V,
+#B,
+#N,
+#M,
+#Ö,
+#Ç {
+    width: 39px !important
+}
+
+.keyBoard .keys #A {
+    margin-left: 15px;
+}
+
+.keyBoard .keys #ENTER,
+#« {
+    width: 58px;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Colors */
+.grey-overlay {
+    background-color: #3a3a3c !important;
+    border: none !important;
+}
+
+.yellow-overlay {
+    background-color: #b59f3a !important;
+    border: none !important;
+}
+
+.green-overlay {
+    background-color: #538d4e !important;
+    border: none !important;
+}
+
+/* Flip */
+
+.flip {
+    animation: 0.5s linear flipping;
+}
+
+@keyframes flipping {
+    0% {
+        transform: rotateX(0deg);
+    }
+
+    50% {
+        transform: rotateX(90deg);
+    }
+
+    100% {
+        transform: rotateX(0deg);
+    }
+}
