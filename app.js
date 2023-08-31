@@ -59,14 +59,18 @@ gameBoard.forEach((eachRow, rowIndex) => {
 
 const handleClick = (letter) => {
     if (letter == "ENTER") {
+
         checkRow();
+
         return;
     }
     if (letter == "«" || letter == "BACKSPACE") {
+
         deleteLetter();
         // console.log("current row index:" + currentRowIndex, "current row:" + currentRow);
         return;
     }
+
     addLetterToBox(letter);
 }
 
@@ -81,6 +85,19 @@ keys.forEach((key, keyIndex) => {
     keyBoard.append(btn);
 });
 
+// kalvye ile yazma
+document.addEventListener("keydown", (e) => {
+
+    const letter = e.key.toLocaleUpperCase("tr-TR");
+    const regex = /^[A-ZÇĞİÖŞÜ]$/;
+
+    if (regex.test(letter) || letter == "ENTER" || letter == "BACKSPACE") { // regexden backspace ve enter tuşu false dönüyor çünkü regex sadece büyük türkçe harfleri kabul ediyor bu yüzde or(||) ifadesi ile gelen enter ve backspace tuşu ise if bloğonu girdirmeliyim 
+
+        handleClick(letter);
+
+    }
+    return;
+})
 
 const addLetterToBox = (letter) => {
     if (currentRowIndex < 5) {
@@ -97,7 +114,7 @@ const addLetterToBox = (letter) => {
 };
 
 const deleteLetter = () => {
-    if (currentRowIndex > 0) {
+    if (currentRowIndex > 0 && isGameover != true) {
         currentRowIndex--;
         const element = document.querySelector("#row-" + currentRow + "-box-" + currentRowIndex);
         element.textContent = "";
@@ -105,25 +122,36 @@ const deleteLetter = () => {
 }
 
 const checkRow = () => {
-
     const guess = gameBoard[currentRow].join("");
 
+    if (guess.length != 5) {
+
+        messageBoxShow("Yetersiz Harf !!");
+        return;
+    }
     if (wordList.includes(guess)) {
 
         if (currentRowIndex > 4) {
             // console.log(guess, gameBoard,wordle);
             flipCards();
+
             if (guess == wordle) {
+
                 messageBoxShow("you are awesome");
+
                 isGameover = true;
                 keyBoard.classList.add("disabled");
                 return;
             } else {
                 if (currentRow >= 5) {
+                    if (isGameover == false) {
+
+                        messageBoxShow("Gameover..");
+
+                        setTimeout(() => { showChoosenWord() }, 3000);
+                        keyBoard.classList.add("disabled");
+                    }
                     isGameover = true;
-                    messageBoxShow("Gameover..");
-                    setTimeout(() => { showChoosenWord() }, 3000);
-                    keyBoard.classList.add("disabled");
                     return;
                 }
                 if (currentRow < 5) {
@@ -132,55 +160,35 @@ const checkRow = () => {
                     return;
                 }
             }
-
         }
-
     }
     else {
         messageBoxShow("Kelime Listesinde Yok !")
     }
-
 };
-
-// kalvye ile yazma
-document.addEventListener("keydown", (e) => {
-
-    const letter = e.key.toLocaleUpperCase("tr-TR");
-    const regex = /^[A-ZÇĞİÖŞÜ]$/;
-
-    if (regex.test(letter) || letter == "ENTER" || letter == "BACKSPACE") { // regexden backspace ve enter tuşu false dönüyor çünkü regex sadece büyük türkçe harfleri kabul ediyor bu yüzde or(||) ifadesi ile gelen enter ve backspace tuşu ise if bloğonu girdirmeliyim 
-
-        handleClick(letter);
-
-    }
-    return;
-})
 
 // oyunu kaybettikten sonra günü kelimesini gösterme
 const showChoosenWord = () => {
     const info = document.createElement("p");
     info.textContent = "Günün kelimesi: " + wordle;
-
     messageBox.append(info);
-
-    setTimeout(() => messageBox.removeChild(info), 4000);
+    setTimeout(() => messageBox.removeChild(info), 5000);
 }
 const messageBoxShow = (message) => {
     const p = document.createElement("p");
     p.textContent = message;
-    // p.setAttribute("id", "message-p")
 
-    messageBox.append(p);
-
-    setTimeout(() => messageBox.removeChild(p), 2000);
+    if (messageBox.children.length < 1) {
+        messageBox.append(p);
+        setTimeout(() => messageBox.removeChild(p), 2000);
+    }
+    return;
 }
 
-
 const addColorToKeyBoard = (letter, color) => {
-    // console.log(letter, color)
     const Key = document.getElementById(letter);
-    Key.classList.add(color);
 
+    Key.classList.add(color);
 }
 
 const flipCards = () => {
@@ -215,7 +223,6 @@ const flipCards = () => {
             addColorToKeyBoard(guess[index].letter, guess[index].color);
 
         }, 500 * index)
-
     })
 };
 
