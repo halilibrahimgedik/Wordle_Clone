@@ -1,6 +1,9 @@
 const board = document.querySelector(".gameBoard");
 const keyBoard = document.querySelector(".keys");
 const messageBox = document.querySelector(".message");
+const info = document.querySelector(".fa-circle-info");
+const infoCard = document.querySelector(".instructions");
+const close = document.querySelector(".fa-circle-xmark");
 
 let currentRow = 0;
 let currentRowIndex = 0;
@@ -85,7 +88,7 @@ keys.forEach((key, keyIndex) => {
     keyBoard.append(btn);
 });
 
-// kalvye ile yazma
+// klavye ile yazma
 document.addEventListener("keydown", (e) => {
 
     const letter = e.key.toLocaleUpperCase("tr-TR");
@@ -98,6 +101,20 @@ document.addEventListener("keydown", (e) => {
     }
     return;
 })
+
+// when user clicks information icon
+const information = () => {
+    info.addEventListener("click", function () {
+        infoCard.style.display = "block";
+        infoCard.classList.add("scaleAnimation");
+    });
+
+    close.addEventListener("click", function () {
+        infoCard.style.display = "none";
+    });
+}
+
+information();
 
 const addLetterToBox = (letter) => {
     if (currentRowIndex < 5) {
