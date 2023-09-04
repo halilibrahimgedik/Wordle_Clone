@@ -1,6 +1,10 @@
+const body = document.querySelector("#body");
 const board = document.querySelector(".gameBoard");
 const keyBoard = document.querySelector(".keys");
 const messageBox = document.querySelector(".message");
+const infoBtn = document.querySelector(".fa-circle-info");
+const infoCard = document.querySelector(".instructions");
+const close = document.querySelector(".fa-circle-xmark");
 
 let currentRow = 0;
 let currentRowIndex = 0;
@@ -28,7 +32,6 @@ fetch("/words")
     .catch(error => {
         console.error("Veri çekme hatası:", error);
     });
-
 
 //* setting gameBoard
 gameBoard = [
@@ -85,7 +88,7 @@ keys.forEach((key, keyIndex) => {
     keyBoard.append(btn);
 });
 
-// kalvye ile yazma
+// klavye ile yazma
 document.addEventListener("keydown", (e) => {
 
     const letter = e.key.toLocaleUpperCase("tr-TR");
@@ -98,6 +101,25 @@ document.addEventListener("keydown", (e) => {
     }
     return;
 })
+
+// when user clicks information icon
+const information = () => {
+    infoBtn.addEventListener("click", function () {
+        body.classList.add("popup");
+        infoCard.style.display = "block";
+        infoCard.style.transform = 'translate(-50%,-50%) scale(1)';
+        infoCard.style.transition = 'transform 1s ease-in-out';
+    });
+
+    close.addEventListener("click", function () {
+        infoCard.style.display = "none";
+        body.classList.remove("popup");
+        infoCard.style.transform = 'translate(-50%,-50%) scale(0.6)';
+        infoCard.style.transition = 'transform 1s ease-in-out';
+    });
+}
+
+information();
 
 const addLetterToBox = (letter) => {
     if (currentRowIndex < 5) {

@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="body">
     
     <div class="container">
         <div class="title-div">
-            <div style="width: 54px;"></div>
+            <div style="width: 69px;"></div>
             <h1 class="title">Wordle</h1>
             <div class="icons">
                 <i class="fa-solid fa-circle-info"></i>
@@ -27,8 +27,58 @@
                 
             </div>
         </div>
+
+        <div class="">
+            <div class="instructions">
+                <h2> Nasıl Oynanır </h2>
+                <i class="fa-regular fa-circle-xmark"></i>
+                
+                <p class="instructions_p">WORDLE'i 6 denemede bulun.</p>
+                <p class="instructions_p">Her tahmin 5 harfli doğru bir kelime olmalıdır. Göndermek için enter'a basın.</p>
+                <p class="instructions_p">Her tahminden sonra kutucukların renkleri tahmininizin yakınlığına göre değişecektir.</p>
+                
+                <div class="horizantal"></div>
+                
+                <div class="instructions_div">
+                    <strong>örnekler</strong>
+                    
+                    <div class="instructions_boxes"> 
+                    <div class="instructions_box colored-green">A</div>
+                    <div class="instructions_box">B</div>
+                    <div class="instructions_box">O</div>
+                    <div class="instructions_box">N</div>
+                    <div class="instructions_box">E</div>
+                    </div>
+                    <p>A harfi kelimede var ve doğru yerde</p>
+                    
+                    <div class="instructions_boxes"> 
+                    <div class="instructions_box colored-yellow">G</div>
+                    <div class="instructions_box">İ</div>
+                    <div class="instructions_box">Z</div>
+                    <div class="instructions_box">E</div>
+                    <div class="instructions_box">M</div>
+                    </div>
+                    <p>"İ" harfi kelimede var fakat yanlış yerde.</p>
+                    
+                    <div class="instructions_boxes"> 
+                    <div class="instructions_box">F</div>
+                    <div class="instructions_box">A</div>
+                    <div class="instructions_box">L</div>
+                    <div class="instructions_box">E</div>
+                    <div class="instructions_box colored-gray">Z</div>
+                    </div>
+                    <p>"Z" harfi kelimede yok </p>
+
+                    <div class="horizantal"></div>
+                    <p>Her gün yeni bir WORDLE gelir!</p>
+        
+        </div>
+            </div>
+        </div>
+
     </div>
 
+    
     
     <script src="letters.js"></script>
     <script src="app.js"></script>
